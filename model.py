@@ -8,7 +8,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import time
 
-NAME = "dance-form-classifier-64x128x256-{}".format(int(time.time()))
+NAME = "dance-form-classifier-{}".format(time.strftime("%d-%h:%m:%S"))
 tensorboard = TensorBoard(log_dir='logs/{}'.format(NAME))
 
 classes = [ x for x in range(8)]
@@ -44,11 +44,11 @@ def cnn_model(X_train, X_test , y_train, y_test):
     model.add(Conv2D(128,(3,3),activation="relu"))
     model.add(MaxPooling2D(2,2))
 
-    # Layer III
+    # Layer IV
     model.add(Conv2D(256,(3,3),activation="relu"))
     model.add(MaxPooling2D(2,2))
-
-    # Layer IV
+    
+    # Layer VI
     model.add(Conv2D(64,(3,3),activation="relu"))
     model.add(MaxPooling2D(2,2))
 
