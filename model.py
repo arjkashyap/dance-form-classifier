@@ -8,9 +8,9 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import time
 
-NAME = "dance-form-classifier-{}".format(time.strftime("%d-%h:%m:%S"))
-tensorboard = TensorBoard(log_dir='logs/{}'.format(NAME))
+NAME = "dance-form-classifier-{}".format(time.strftime("%d%h-%m-%S"))
 
+tensorboard = TensorBoard(log_dir="""logs/{}""".format(NAME))
 classes = [ x for x in range(8)]
 
 #Model name for tensor board
@@ -26,6 +26,8 @@ print("Train images shape ", X.shape[1:])
 
 ep = 20         # Epochs
 bs = 32         # Batch size
+
+
 
 # CNN Model
 def cnn_model(X_train, X_test , y_train, y_test):
@@ -48,21 +50,25 @@ def cnn_model(X_train, X_test , y_train, y_test):
     model.add(Conv2D(256,(3,3),activation="relu"))
     model.add(MaxPooling2D(2,2))
     
-    # Layer VI
+    # Layer V
     model.add(Conv2D(64,(3,3),activation="relu"))
     model.add(MaxPooling2D(2,2))
 
     # Flatten the input
     model.add(Flatten())
 
-    # Dense Layers
+    # Layer VI Dense
     model.add(Dense(64, activation='relu'))
-    model.add(Dense(8, activation="softmax"))
+    model.add(Dropout(0.2))
+
+    # Output layer
+    model.add(Dense(8, activation="sigmoid"))
 
 
-    # Compile model
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    model.fit(X_train, y_train, batch_size=bs, epochs=ep, validation_data = (X_test, y_test),  callbacks=[tensorboard])
 
-    model.fit(X_train, y_train, batch_size=bs, epochs=ep, validation_data = (X_test, y_test), callbacks = [tensorboard])
+    # Save model
+    model.save('cnn.model')
 
 cnn_model(X_train, X_test, y_train, y_test)
