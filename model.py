@@ -11,11 +11,11 @@ import time
 
 NAME = "dance-form-classifier-{}".format(time.strftime("%d%h-%m-%S"))
 
+#Model name for tensor board
 tensorboard = TensorBoard(log_dir="""logs/{}""".format(NAME))
 classes = [ x for x in range(8)]
 
-#Model name for tensor board
-#Model name for tensor board
+
 X = np.load('features.npy')
 y = np.load('labels.npy')
 
