@@ -1,3 +1,7 @@
 data/
 logs/
+<<<<<<< HEAD
 data-addon/
+=======
+additional-data/
+>>>>>>> 1d99c49fffdbaf09be647e5ff08823cff367e428

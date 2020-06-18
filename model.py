@@ -6,6 +6,7 @@ from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D,
 from tensorflow.keras.callbacks import TensorBoard
 import numpy as np
 from sklearn.model_selection import train_test_split
+from keras import regularizers
 import time
 
 NAME = "dance-form-classifier-{}".format(time.strftime("%d%h-%m-%S"))
@@ -33,7 +34,6 @@ bs = 32         # Batch size
 def cnn_model(X_train, X_test , y_train, y_test):
 
     model = Sequential()
-
     # Layer I
     model.add(Conv2D( 64, (3, 3), activation="relu", input_shape=X.shape[1:] ))
     model.add(MaxPooling2D(2,2))
@@ -71,4 +71,17 @@ def cnn_model(X_train, X_test , y_train, y_test):
     # Save model
     model.save('cnn.model')
 
-cnn_model(X_train, X_test, y_train, y_test)
+#cnn_model(X_train, X_test, y_train, y_test)
+
+dense_layers = [0, 1, 2]
+layer_sizes = [64, 128, 256]
+conv_layers = [2, 3, 4, 5]
+
+#get_all_models(dense_layers, layer_sizes, conv_layers)
+
+
+
+
+
+
+
