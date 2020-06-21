@@ -49,7 +49,7 @@ def cnn_model(X_train, X_test , y_train, y_test):
     # Layer IV
     model.add(Conv2D(256,(3,3),activation="relu"))
     model.add(MaxPooling2D(2,2))
-    
+
     # Layer V
     model.add(Conv2D(64,(3,3),activation="relu"))
     model.add(MaxPooling2D(2,2))
@@ -71,17 +71,5 @@ def cnn_model(X_train, X_test , y_train, y_test):
     # Save model
     model.save('cnn.model')
 
-#cnn_model(X_train, X_test, y_train, y_test)
-
-dense_layers = [0, 1, 2]
-layer_sizes = [64, 128, 256]
-conv_layers = [2, 3, 4, 5]
-
-#get_all_models(dense_layers, layer_sizes, conv_layers)
-
-
-
-
-
-
+cnn_model(X_train, X_test, y_train, y_test)
 
